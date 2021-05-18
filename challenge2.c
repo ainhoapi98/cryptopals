@@ -57,11 +57,12 @@ void hexString2Byte(char* hexString, int len, int * byteArray) {
 
 	char left, right;
 	int i, j = 0;
-	
+
 	for (i = 0; i < len; i += 2, j++) {
 
 		left = hexString[i];
 		right = hexString[i + 1];
 		byteArray[j] = ((byteMap(left) << 4) | (byteMap(right)));
+		//printf("left %c right %c: %x\n", left, right, byteArray[j]);
 	}
 }

@@ -5,6 +5,7 @@
 
 #include "allChallenges.h"
 
+
 // Single-byte XOR cipher
 void challenge3() {
 
@@ -14,23 +15,29 @@ void challenge3() {
 
 	hexString2Byte(encodedHex, slength, byteArray);
 
-	for (char c = 'a'; c < 'z'; c++) {
-		printf("\nkey is: %c\n", c);
-		singleByteXOR(byteArray, c, slength / 2);
-	}
+	//for (int i = 0; i < slength / 2; i++) printf("%x ", byteArray[i]);
 
-	// result is 'x' --> COOKING !!!!!!!!
-
+	for (char c = 'a'; c <= 'z'; c++) 
+		if (singleByteXOR(byteArray, c, slength / 2)) printf("key is: %c\n", c);;
+	
 }
 
-void singleByteXOR(int* ciphertext, char key, int len) {
+bool singleByteXOR(int* ciphertext, char key, int len) {
 
 	char result [MAX_ARRAY_SIZE];
+	int ok_char = 0, spec_char = 0;
 
 	for (int i = 0; i < len; i++) {
 
+		printf("%x ", ciphertext[i]);
 		result[i] = ciphertext[i] ^ key;
+		if (isalpha(result[i])) ok_char++;
+		else spec_char++;
 	}
-	printf("%s ", result);
+	if (spec_char < (len / 4)) {
+		printf("RESULT: %s ", result);
+		return true;
+	}
+	else return false;
 
 }

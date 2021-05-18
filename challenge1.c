@@ -41,7 +41,7 @@ int challenge1() {
 
 
 	printf("Base64 String: \n");
-	char base64String[100];
+	char base64String[MAX_ARRAY_SIZE];
 	// BYTES TO BASE64
 	for (int i = 0; i < j; i++) {
 
